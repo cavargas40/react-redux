@@ -30,6 +30,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         results: [...state.results, { id: new Date(), value: state.counter }]
       };
+    case 'DELETE_RESULT':
+        const updatedResults = [...state.results].filter(result => result.id !== action.payload);
+
+      return {
+        ...state,
+        results: updatedResults 
+      };
+
     default:
       return state;
   }
