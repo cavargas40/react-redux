@@ -1,11 +1,10 @@
-import { ActionTypes } from './actions';
+import { ActionTypes } from '../actions';
 
 const initialState = {
-  counter: 0,
-  results: []
+  counter: 0
 };
 
-const reducer = (state = initialState, action) => {
+const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.Increment:
       return {
@@ -27,24 +26,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         counter: state.counter - action.payload
       };
-    case ActionTypes.StoreResult:
-      return {
-        ...state,
-        results: [...state.results, { id: new Date(), value: state.counter }]
-      };
-    case ActionTypes.DeleteResult:
-      const updatedResults = [...state.results].filter(
-        result => result.id !== action.payload
-      );
-
-      return {
-        ...state,
-        results: updatedResults
-      };
-
     default:
       return state;
   }
 };
 
-export default reducer;
+export default counterReducer;
