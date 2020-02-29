@@ -1,4 +1,5 @@
 import { ActionTypes } from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
   counter: 0
@@ -7,25 +8,13 @@ const initialState = {
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.Increment:
-      return {
-        ...state,
-        counter: state.counter + 1
-      };
+      return updateObject(state, { counter: state.counter + 1 });
     case ActionTypes.Decrement:
-      return {
-        ...state,
-        counter: state.counter - 1
-      };
+      return updateObject(state, { counter: state.counter - 1 });
     case ActionTypes.Add:
-      return {
-        ...state,
-        counter: state.counter + action.payload
-      };
+      return updateObject(state, { counter: state.counter + action.payload });
     case ActionTypes.Subtract:
-      return {
-        ...state,
-        counter: state.counter - action.payload
-      };
+      return updateObject(state, { counter: state.counter - action.payload });
     default:
       return state;
   }

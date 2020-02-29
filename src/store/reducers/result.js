@@ -1,4 +1,5 @@
-import { ActionTypes } from "../actions/actionTypes";
+import { ActionTypes } from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
   results: []
@@ -7,20 +8,15 @@ const initialState = {
 const resultReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.StoreResult:
-      return {
-        ...state,
+      return updateObject(state, {
         results: [...state.results, { id: new Date(), value: action.payload }]
-      };
+      });
     case ActionTypes.DeleteResult:
       const updatedResults = [...state.results].filter(
         result => result.id !== action.payload
       );
 
-      return {
-        ...state,
-        results: updatedResults
-      };
-
+      return updateObject(state, { results: updatedResults });
     default:
       return state;
   }
